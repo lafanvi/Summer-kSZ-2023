@@ -1,0 +1,87 @@
+output: plikHMTTTEE
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE_lite_native:
+    path: /path/to/cobaya_packages/data/planck_supp_data_and_covmats
+
+theory:
+
+params:
+  omega_b:
+    prior:
+      min: 0.01933 # cp prior
+      max: 0.02533 # cp prior
+    ref:
+      dist: norm
+      loc: 2.2211104E-02
+      scale: 8.8253849E-04
+    proposal: 8.8253849E-04
+    latex: \omega_\mathrm{b}
+  omega_cdm:
+    prior:
+      min: 0.08
+      max: 0.20
+    ref:
+      dist: norm
+      loc: 1.2590565E-01
+      scale: 1.2255042E-02
+    proposal: 1.2255042E-02
+    latex: \omega_\mathrm{cdm}
+  H0:
+    prior:
+      min: 40.
+      max: 99.
+    ref:
+      dist: norm
+      loc: 6.9351243E+01
+      scale: 2.
+    proposal: 2.
+    latex: H_0
+  n_s:
+    prior:
+      min: 0.8812 # cp prior
+      max: 1.0492 # cp prior
+    ref:
+      dist: norm
+      loc: 9.5989286E-01
+      scale: 1.9465327E-02
+    proposal: 1.9465327E-02
+    latex: n_s
+
+  logA:
+    prior:
+      min: 2.5
+      max: 3.5
+    ref:
+      dist: norm
+      loc: 2.9939341E+00
+      scale: 1.2892144E-01
+    proposal: 1.2892144E-01
+    latex: ln10^{10}A_s
+
+  tau_reio:
+    prior:
+      min: 0.02
+      max: 0.12
+    ref:
+      dist: norm
+      loc: 0.055
+      scale: 0.006
+    proposal: 0.003
+    latex: \tau_\mathrm{reio}
+
+sampler:
+  #settings for covmat see https://cobaya.readthedocs.io/en/latest/sampler_mcmc.html
+  mcmc:
+    covmat: plikHMTTTEE.covmat
+    #covmat: auto
+    Rminus1_stop: 0.01
+    #drag: true #only possible when doing a multi-likelihood run with different speed for each likelihood
+    proposal_scale: 1.9
+    burn_in: 50
+    max_tries: 5000
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 30.
+    learn_proposal_Rminus1_max_early: 80.
+# debug: True
+# timing: true
